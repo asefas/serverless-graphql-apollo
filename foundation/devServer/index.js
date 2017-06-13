@@ -7,6 +7,8 @@ import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import graphQLHandler from '../../graphql';
 import webpackConfig from '../webpack/webpack.dev';
+import graphqlHTTP from 'express-graphql';
+import Schema from '../../graphql/schema';
 
 const APP_PORT = 3000;
 const app = express();
@@ -33,6 +35,11 @@ app.post('/graphql', (req, res) => {
     })
     .catch(err => res.end(err));
 });
+
+app.use('/graphql', graphqlHTTP({
+  schema: Schema,
+  graphiql: true
+}));
 
 app.use(middleware);
 app.use(webpackHotMiddleware(compiler));

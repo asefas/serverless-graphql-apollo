@@ -1,7 +1,7 @@
 /* @flow */
 
 import addType from '../utils/addType';
-// import addTypes from '../utils/addTypes';
+import addTypes from '../utils/addTypes';
 
 const envVariable = process.env.MOCKED_DATABASE || 'false';
 const useMockedDatabase = `${envVariable}`.toLowerCase() === 'true';
@@ -12,4 +12,5 @@ const db = useMockedDatabase ? require('./mockedDatabase').default : require('./
 export default {
   ...db,
   getViewer: addType(db.getViewer, 'user'),
+  getFunds: addTypes(db.getFunds, 'fund')
 };

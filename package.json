@@ -37,6 +37,7 @@
     "apollo-client": "^1.0.0-rc.2",
     "babel-polyfill": "^6.16.0",
     "classnames": "2.2.5",
+    "express-graphql": "^0.6.6",
     "graphql-tag": "^1.2.3",
     "jwt-decode": "^2.1.0",
     "lodash": "^4.13.1",
