@@ -1,6 +1,7 @@
 import {
   GraphQLObjectType,
-  GraphQLList
+  GraphQLList,
+  GraphQLString
 } from 'graphql';
 
 import FundType from './fund';
@@ -17,7 +18,10 @@ const QueryType = new GraphQLObjectType({
     // Add your own root fields here
     funds: {
       type: new GraphQLList(FundType),
-      resolve: (_, _args, context) => db.getFunds({}, context),
+      resolve: (_, _args, context) => db.getFunds(_args, context),
+      args: {
+        ticker: { type: GraphQLString }
+      }
     },
     viewer: {
       type: UserType,
